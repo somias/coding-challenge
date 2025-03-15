@@ -9,7 +9,7 @@ export default function TransactionsScreen() {
     <ScreenWrapper>
       <View className="flex-1 p-4">
         <View className="gap-6 flex-1">
-          <Summary />
+          <Summary expandSummary />
           <RecentTransactions showFull />
         </View>
       </View>

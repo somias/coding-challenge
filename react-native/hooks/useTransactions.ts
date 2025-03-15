@@ -1,6 +1,6 @@
 import { API_URLS } from "@/config/api-config";
 import { useQuery } from "@tanstack/react-query";
-import { calculateBalance, groupTransactionsByDay } from "@/utils";
+import { calculateFinancialSummary, groupTransactionsByDay } from "@/utils";
 import { useMemo } from "react";
 
 export interface Transaction {
@@ -36,8 +36,8 @@ export function useTransactions() {
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-  const balance = useMemo(
-    () => calculateBalance(query.data || []),
+  const financialSummary = useMemo(
+    () => calculateFinancialSummary(query.data || []),
     [query.data]
   );
 
@@ -48,7 +48,7 @@ export function useTransactions() {
 
   return {
     ...query,
-    balance,
+    ...financialSummary,
     groupedTransactions,
   };
 }

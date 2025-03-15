@@ -25,12 +25,25 @@ export const formatAmount = (amount: number | string): string => {
   return parseFloat(amount.toString()).toFixed(2);
 };
 
-export const calculateBalance = (data: Transaction[]) => {
-  return data.reduce((total: number, transaction: Transaction) => {
-    return transaction.isExpense
-      ? total - transaction.amount
-      : total + transaction.amount;
-  }, 0);
+export const calculateFinancialSummary = (data: Transaction[]) => {
+  return data.reduce(
+    (summary, transaction) => {
+      if (transaction.isExpense) {
+        return {
+          balance: summary.balance - transaction.amount,
+          totalIncome: summary.totalIncome,
+          totalExpenses: summary.totalExpenses + transaction.amount,
+        };
+      } else {
+        return {
+          balance: summary.balance + transaction.amount,
+          totalIncome: summary.totalIncome + transaction.amount,
+          totalExpenses: summary.totalExpenses,
+        };
+      }
+    },
+    { balance: 0, totalIncome: 0, totalExpenses: 0 }
+  );
 };
 
 export interface DailyTransactions {
