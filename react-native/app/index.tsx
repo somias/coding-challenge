@@ -17,7 +17,7 @@ export default function HomeRoute() {
         <Skeleton className="h-64" />
 
         <View className="gap-6 pt-5">
-          <Summary balance="98.76" />
+          <Summary />
           <RecentTransaction />
         </View>
       </ScrollView>

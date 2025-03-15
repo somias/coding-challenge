@@ -1,10 +1,9 @@
+import { useTransactions } from "@/hooks/useTransactions";
 import { Text, View } from "react-native";
 
-interface SummaryProps {
-  balance: string;
-}
+export default function Summary() {
+  const { balance } = useTransactions();
 
-export default function Summary({ balance }: SummaryProps) {
   return (
     <View className=" dark:bg-gray-800 light:bg-white">
       <Text className="text-lg font-medium mb-3 dark:text-gray-200 light:text-gray-800">
