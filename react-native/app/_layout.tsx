@@ -25,8 +25,6 @@ const asyncStoragePersister = createAsyncStoragePersister({
   storage: AsyncStorage,
 });
 
-// to clear -> asyncStoragePersister.removeClient()
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
