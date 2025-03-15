@@ -23,3 +23,31 @@ export const calculateBalance = (data: Transaction[]) => {
       : total + transaction.amount;
   }, 0);
 };
+interface DailyTransactions {
+  date: string;
+  transactions: Transaction[];
+}
+
+export const groupTransactionsByDate = (
+  transactions: Transaction[]
+): DailyTransactions[] => {
+  const groups: { [date: string]: Transaction[] } = {};
+
+  transactions.forEach((transaction) => {
+    const date = new Date(transaction.createdAt).toISOString().split("T")[0];
+    if (!groups[date]) {
+      groups[date] = [];
+    }
+    groups[date].push(transaction);
+  });
+
+  return Object.entries(groups)
+    .map(([date, transactions]) => ({
+      date,
+      transactions: transactions.sort(
+        (a, b) =>
+          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      ),
+    }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+};

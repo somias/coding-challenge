@@ -2,6 +2,8 @@ import { Link } from "expo-router";
 import { Text, View, ActivityIndicator } from "react-native";
 import { useTransactions } from "@/hooks/useTransactions";
 import { formatDate } from "@/utils";
+import Skeleton from "./shared/Skeleton";
+import ShowFullTransactions from "./ShowFullTransactions";
 
 interface RecentTransactions {
   showFull?: boolean;
@@ -11,6 +13,10 @@ export default function RecentTransactions({
   showFull = false,
 }: RecentTransactions) {
   const { data, isLoading } = useTransactions();
+
+  if (isLoading) {
+    return <Skeleton />;
+  }
 
   const recentTransactions = data ? data.slice(0, 3) : [];
 
@@ -31,14 +37,7 @@ export default function RecentTransactions({
         ) : null}
       </View>
 
-      {isLoading ? (
-        <View className="items-center py-4">
-          <ActivityIndicator size="small" color="#3b82f6" />
-          <Text className="mt-2 text-sm text-gray-500">
-            Loading transactions...
-          </Text>
-        </View>
-      ) : (
+      {!showFull ? (
         <View className="space-y-3">
           {recentTransactions.map((transaction) => (
             <View
@@ -64,6 +63,8 @@ export default function RecentTransactions({
             </View>
           ))}
         </View>
+      ) : (
+        <ShowFullTransactions />
       )}
 
       {/* Show a message if there are no transactions */}
