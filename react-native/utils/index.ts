@@ -61,11 +61,6 @@ export function groupTransactionsByDay(
   return (
     Array.from(groupedByDay.entries())
       .map(([day, dayTransactions]) => {
-        const sortedTransactions = dayTransactions.sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-
         const [year, month, dayNum] = day.split("-").map(Number);
         const date = new Date(year, month - 1, dayNum);
         const formattedDay = date.toLocaleDateString("en-US", {
@@ -77,7 +72,7 @@ export function groupTransactionsByDay(
         return {
           day,
           formattedDay,
-          data: sortedTransactions,
+          data: dayTransactions,
         };
       })
       // Sort days (newest first)

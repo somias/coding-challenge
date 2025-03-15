@@ -1,50 +1,61 @@
-# Welcome to your Expo app 👋
+# Account Dashboard App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native application that provides users with a comprehensive financial dashboard showing their account balance and transaction history.
 
-## Get started
+## Features
 
-1. Install dependencies
+### Core Features
 
-   ```bash
-   npm install
-   ```
+- **Account Balance**: Real-time calculated account balance display
+- **Recent Transactions**: View three most recent transactions on the dashboard
+- **Full Transaction History**: Access complete transaction list via "See all" button
 
-2. Start the app
+### Additional Features
 
-   ```bash
-    npx expo start
-   ```
+- **Pull to Refresh**: Update dashboard data by pulling down on the transaction list
+- **Dark/Light Mode**: Toggle between light and dark themes for better user experience
+- **Offline Support**: Cache data locally for viewing when offline
+- **Connection Status**: Display components to notify users of offline status and when connection restores using NetInfo
+- **Skeleton Loading Screens**: Show placeholder loaders while data is being fetched
+- **Modal Transaction Details**: Tap on any transaction to view detailed information in a modal
 
-In the output, you'll find options to open the app in a
+## Technologies Used
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- React Native Expo
+- Expo Router
+- React Query (TanStack Query) for data fetching, caching, and state management
+- AsyncStorage for persistent offline data storage
+- NetInfo for network connectivity detection
+- NativeWind
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Project Structure
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+project-root/
+├── app/
+│ ├── _layout.tsx
+│ ├── +not-found.tsx
+│ ├── index.tsx
+│ └── transactions.tsx
+├── assets/
+├── components/
+│ ├── shared/
+│ │ ├── Amount.tsx
+│ │ ├── ConnectionStatus.tsx
+│ │ ├── EmptyData.tsx
+│ │ ├── ScreenWrapper.tsx
+│ │ ├── Skeleton.tsx
+│ │ ├── Summary.tsx
+│ │ └── TransactionItem.tsx
+│ ├── ProductsCarousel.tsx
+│ ├── RecentTransactions.tsx
+│ └── ShowFullTransactions.tsx
+├── config/
+│ └── api-config.ts
+├── utils/
+│ └── index.ts
+└── hooks/
+ ├── useColorScheme.ts
+ ├── useProducts.ts
+ └── useTransactions.ts
+```
