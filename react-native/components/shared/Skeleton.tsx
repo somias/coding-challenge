@@ -9,7 +9,7 @@ export default function Skeleton({ className }: SkeletonProps) {
   return (
     <View
       className={clsx(
-        "animate-pulse min-h-4 bg-gray-200 dark:bg-gray-700 rounded-md w-full",
+        "animate-pulse min-h-4 bg-gray-300 dark:bg-gray-700 rounded-md w-full",
         className
       )}
     />

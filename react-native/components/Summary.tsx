@@ -1,8 +1,9 @@
 import { useTransactions } from "@/hooks/useTransactions";
 import { Text, View } from "react-native";
+import Skeleton from "./shared/Skeleton";
 
 export default function Summary() {
-  const { balance } = useTransactions();
+  const { balance, isLoading } = useTransactions();
 
   return (
     <View className="">
@@ -10,12 +11,18 @@ export default function Summary() {
         Summary
       </Text>
 
-      <View className="flex-row border rounded-md p-3 mb-4 flex justify-between items-center dark:border-gray-700 light:border-gray-200">
-        <Text className="dark:text-gray-200 light:text-gray-700">Balance</Text>
-        <Text className="font-semibold dark:text-white light:text-black">
-          {balance}€
-        </Text>
-      </View>
+      {isLoading ? (
+        <Skeleton className="h-10" />
+      ) : (
+        <View className="flex-row border rounded-md p-3 mb-4 flex justify-between items-center dark:border-gray-700 light:border-gray-200">
+          <Text className="dark:text-gray-200 light:text-gray-700">
+            Balance
+          </Text>
+          <Text className="font-semibold dark:text-white light:text-black">
+            {balance}€
+          </Text>
+        </View>
+      )}
     </View>
   );
 }

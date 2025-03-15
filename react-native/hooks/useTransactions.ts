@@ -1,6 +1,6 @@
 import { API_URLS } from "@/config/api-config";
 import { useQuery } from "@tanstack/react-query";
-import { calculateBalance } from "@/utils";
+import { calculateBalance, groupTransactionsByDate } from "@/utils";
 import { useMemo } from "react";
 
 export interface Transaction {
@@ -35,8 +35,14 @@ export function useTransactions() {
     [query.data]
   );
 
+  const groupedTransactions = useMemo(
+    () => groupTransactionsByDate(query.data ?? []),
+    [query.data]
+  );
+
   return {
     ...query,
     balance,
+    groupedTransactions,
   };
 }

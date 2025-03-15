@@ -2,20 +2,29 @@ import { SectionList, Text, View } from "react-native";
 import TransactionItem from "./TransactionItem";
 import { useTransactions } from "@/hooks/useTransactions";
 import { formatDate, groupTransactionsByDate } from "@/utils";
+import Skeleton from "./shared/Skeleton";
 
 export default function ShowFullTransactions() {
-  const { data } = useTransactions();
+  const { data, isLoading } = useTransactions();
   const groupedTransactions = groupTransactionsByDate(data ?? []);
-  const sections = groupedTransactions.map((group) => ({
-    date: group.date,
-    data: group.transactions,
-  }));
+
+  if (isLoading) {
+    return (
+      <View>
+        {Array(10)
+          .fill(null)
+          .map((_, index) => (
+            <Skeleton className="h-10 my-2" />
+          ))}
+      </View>
+    );
+  }
 
   return (
     <SectionList
       className="flex-1"
-      contentContainerClassName="pb-20"
-      sections={sections}
+      contentContainerClassName="pb-10"
+      sections={groupedTransactions}
       keyExtractor={(item) => item.id}
       showsVerticalScrollIndicator={false}
       renderItem={({ item }) => (
@@ -35,11 +44,11 @@ export default function ShowFullTransactions() {
         />
       )}
       stickySectionHeadersEnabled={false}
-      renderSectionHeader={({ section: { date } }) => (
+      renderSectionHeader={({ section: { day } }) => (
         <View className="pt-4 mt-4 pl-2 dark:bg-gray-900 light:bg-gray-100 rounded-t-lg">
           <Text className="dark:text-white light:text-black text-xl font-semibold lowercase">
             {formatDate(
-              date,
+              day,
               {
                 month: "long",
                 day: "numeric",

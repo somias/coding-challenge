@@ -33,8 +33,8 @@ export const calculateBalance = (data: Transaction[]) => {
   }, 0);
 };
 interface DailyTransactions {
-  date: string;
-  transactions: Transaction[];
+  day: string;
+  data: Transaction[];
 }
 
 export const groupTransactionsByDate = (
@@ -51,12 +51,12 @@ export const groupTransactionsByDate = (
   });
 
   return Object.entries(groups)
-    .map(([date, transactions]) => ({
-      date,
-      transactions: transactions.sort(
+    .map(([day, transactions]) => ({
+      day,
+      data: transactions.sort(
         (a, b) =>
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
       ),
     }))
-    .sort((a, b) => a.date.localeCompare(b.date));
+    .sort((a, b) => a.day.localeCompare(b.day));
 };

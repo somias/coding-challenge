@@ -1,5 +1,5 @@
 import { RefreshControl, ScrollView, View } from "react-native";
-import Skeleton from "@/components/shared/Skeleton";
+
 import Summary from "@/components/Summary";
 import RecentTransaction from "@/components/RecentTransactions";
 import { SafeAreaView } from "react-native-safe-area-context";

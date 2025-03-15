@@ -18,7 +18,7 @@ export default function RecentTransactions({
   const { data, isLoading } = useTransactions();
 
   if (isLoading) {
-    return <Skeleton />;
+    return <Skeleton className="h-10" />;
   }
 
   const recentTransactions = data ? data.slice(0, 3) : [];

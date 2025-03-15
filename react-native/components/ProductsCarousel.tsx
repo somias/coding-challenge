@@ -1,9 +1,14 @@
 import { FlatList, Image, Dimensions, View } from "react-native";
 import { useProducts } from "@/hooks/useProducts";
+import Skeleton from "./shared/Skeleton";
 
 export default function ProductsCarousel() {
-  const { data } = useProducts();
+  const { data, isLoading } = useProducts();
   const { width } = Dimensions.get("window");
+
+  if (isLoading) {
+    return <Skeleton className="h-80" />;
+  }
 
   return (
     <FlatList
