@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import ScreenWrapper from "@/components/shared/ScreenWrapper";
 import { RefreshControl, ScrollView, View } from "react-native";
 import ProductsCarousel from "@/components/ProductsCarousel";
 import Summary from "@/components/Summary";
@@ -23,7 +23,10 @@ export default function HomeRoute() {
   }, [refetchTransactions, refetchProducts]);
 
   return (
-    <SafeAreaView className="flex-1">
+    <ScreenWrapper>
+      <View className="p-4">
+        <ProductsCarousel />
+      </View>
       <ScrollView
         className="flex-1"
         refreshControl={
@@ -31,14 +34,11 @@ export default function HomeRoute() {
         }
         contentContainerClassName="p-4 flex-1 gap-6 dark:bg-gray-900 text-white bg-gray-100 text-black"
       >
-        <View className="h-80">
-          <ProductsCarousel />
-        </View>
         <View className="gap-6 flex-1 mt-10">
           <Summary />
           <RecentTransaction />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 }

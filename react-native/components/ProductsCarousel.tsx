@@ -3,7 +3,7 @@ import Skeleton from "./shared/Skeleton";
 
 import { useProducts } from "@/hooks/useProducts";
 
-const PARENT_PADDING = 16 * 2;
+const PARENT_PADDING = 8 * 2;
 const ITEM_SPACING = 8;
 
 export default function ProductsCarousel() {
@@ -35,7 +35,7 @@ export default function ProductsCarousel() {
             className="h-80 object-cover"
             style={{
               width: CONTAINER_WIDTH - ITEM_SPACING * 2,
-              borderRadius: 16,
+              borderRadius: 8,
             }}
           />
         </View>
