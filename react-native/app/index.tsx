@@ -1,12 +1,24 @@
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { RefreshControl, ScrollView, Text, View } from "react-native";
+
+import Skeleton from "@/components/shared/Skeleton";
+import Summary from "@/components/Summary";
+import RecentTransaction from "@/components/RecentTransactions";
 
 export default function HomeRoute() {
   return (
-    <View className="flex items-center justify-center flex-1 text-white">
-      <Link href="/transactions">
-        <Text className="text-white">Open modal</Text>
-      </Link>
-    </View>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={false} onRefresh={() => {}} />
+      }
+      contentContainerClassName="pb-5 flex-1 gap-12 bg-gray-100"
+    >
+      <Skeleton className="h-64" />
+
+      <View className="gap-6 px-5 pt-5">
+        <Summary balance="98.76" />
+        <RecentTransaction />
+      </View>
+    </ScrollView>
   );
 }
