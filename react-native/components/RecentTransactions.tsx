@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import Skeleton from "./shared/Skeleton";
 import TransactionItem from "./TransactionItem";
 import ShowFullTransactions from "./ShowFullTransactions";
+import EmptyData from "./EmptyData";
 
 import { useTransactions } from "@/hooks/useTransactions";
 
@@ -27,7 +28,7 @@ export default function RecentTransactions({
         <Text className="text-lg font-medium dark:text-gray-200 light:text-gray-800">
           Recent transactions
         </Text>
-        {!showFull ? (
+        {!showFull && newestThreeTransactions.length ? (
           <Link
             href="/transactions"
             className="text-blue-500 items-center text-sm"
@@ -62,12 +63,7 @@ export default function RecentTransactions({
         <ShowFullTransactions />
       )}
 
-      {/* Show a message if there are no transactions */}
-      {!isLoading && newestThreeTransactions.length === 0 && (
-        <View className="py-4 items-center">
-          <Text className="text-gray-500">No recent transactions</Text>
-        </View>
-      )}
+      {!isLoading && newestThreeTransactions.length === 0 && <EmptyData />}
     </View>
   );
 }

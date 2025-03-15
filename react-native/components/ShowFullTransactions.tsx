@@ -1,6 +1,7 @@
 import { SectionList, Text, View } from "react-native";
 import Skeleton from "./shared/Skeleton";
 import TransactionItem from "./TransactionItem";
+import EmptyData from "./EmptyData";
 
 import { useTransactions } from "@/hooks/useTransactions";
 
@@ -21,7 +22,7 @@ export default function ShowFullTransactions() {
   return (
     <SectionList
       className="flex-1"
-      contentContainerClassName="pb-10 bg-gray-100"
+      contentContainerClassName="pb-10 dark:bg-gray-900 bg-gray-100 flex-grow"
       sections={groupedTransactions}
       keyExtractor={(item) => item.id}
       showsVerticalScrollIndicator={false}
@@ -48,6 +49,11 @@ export default function ShowFullTransactions() {
           </Text>
         </View>
       )}
+      ListEmptyComponent={
+        <View className="flex-1 justify-center items-center px-6">
+          <EmptyData />
+        </View>
+      }
     />
   );
 }
