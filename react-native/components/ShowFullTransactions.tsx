@@ -13,6 +13,8 @@ export default function ShowFullTransactions() {
 
   return (
     <SectionList
+      className="flex-1"
+      contentContainerClassName="pb-20"
       sections={sections}
       keyExtractor={(item) => item.id}
       showsVerticalScrollIndicator={false}

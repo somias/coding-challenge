@@ -16,7 +16,7 @@ export default function HomeRoute() {
       >
         <Skeleton className="h-64" />
 
-        <View className="gap-6 pt-5">
+        <View className="gap-6 pt-5 flex-1">
           <Summary />
           <RecentTransaction />
         </View>
