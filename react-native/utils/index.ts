@@ -1,15 +1,24 @@
 import { Transaction } from "@/hooks/useTransactions";
 
-export const formatDate = (dateString: string): string => {
+export const formatDate = (
+  dateString: string,
+  options?: Intl.DateTimeFormatOptions,
+  localeDate?: boolean
+): string => {
   const date = new Date(dateString);
-  const options: Intl.DateTimeFormatOptions = {
+  const defaultOptions: Intl.DateTimeFormatOptions = {
     month: "short",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
   };
-  return date.toLocaleDateString(undefined, options);
+
+  if (localeDate) {
+    return date.toLocaleDateString(undefined, options ?? defaultOptions);
+  } else {
+    return date.toLocaleTimeString(undefined, options ?? defaultOptions);
+  }
 };
 
 export const formatAmount = (amount: number | string): string => {
