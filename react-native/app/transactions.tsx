@@ -1,8 +1,8 @@
 import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { View } from "react-native";
 import Summary from "@/components/Summary";
 import RecentTransactions from "@/components/RecentTransactions";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TransactionsScreen() {
   return (

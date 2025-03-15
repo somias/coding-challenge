@@ -1,7 +1,5 @@
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-
 import Skeleton from "./shared/Skeleton";
 import TransactionItem from "./TransactionItem";
 import ShowFullTransactions from "./ShowFullTransactions";
@@ -21,7 +19,7 @@ export default function RecentTransactions({
     return <Skeleton className="h-10" />;
   }
 
-  const recentTransactions = data ? data.slice(0, 3) : [];
+  const newestThreeTransactions = data ? data.slice(0, 3) : [];
 
   return (
     <View className="flex-1">
@@ -29,7 +27,6 @@ export default function RecentTransactions({
         <Text className="text-lg font-medium dark:text-gray-200 light:text-gray-800">
           Recent transactions
         </Text>
-
         {!showFull ? (
           <Link
             href="/transactions"
@@ -42,7 +39,7 @@ export default function RecentTransactions({
 
       {!showFull ? (
         <View className="space-y-3">
-          {recentTransactions.map((transaction) => (
+          {newestThreeTransactions.map((transaction) => (
             <TransactionItem
               className="flex-row justify-between items-center p-2 rounded-md"
               key={transaction.id}
@@ -51,6 +48,13 @@ export default function RecentTransactions({
               createdAt={transaction.createdAt}
               isExpense={transaction.isExpense}
               amount={transaction.amount}
+              formatDateOptions={{
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+              }}
             />
           ))}
         </View>
@@ -59,7 +63,7 @@ export default function RecentTransactions({
       )}
 
       {/* Show a message if there are no transactions */}
-      {!isLoading && recentTransactions.length === 0 && (
+      {!isLoading && newestThreeTransactions.length === 0 && (
         <View className="py-4 items-center">
           <Text className="text-gray-500">No recent transactions</Text>
         </View>

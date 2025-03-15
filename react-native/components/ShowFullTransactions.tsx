@@ -1,12 +1,11 @@
 import { SectionList, Text, View } from "react-native";
-import TransactionItem from "./TransactionItem";
-import { useTransactions } from "@/hooks/useTransactions";
-import { formatDate, groupTransactionsByDate } from "@/utils";
 import Skeleton from "./shared/Skeleton";
+import TransactionItem from "./TransactionItem";
+
+import { useTransactions } from "@/hooks/useTransactions";
 
 export default function ShowFullTransactions() {
-  const { data, isLoading } = useTransactions();
-  const groupedTransactions = groupTransactionsByDate(data ?? []);
+  const { isLoading, groupedTransactions } = useTransactions();
 
   if (isLoading) {
     return (
@@ -14,22 +13,21 @@ export default function ShowFullTransactions() {
         {Array(10)
           .fill(null)
           .map((_, index) => (
-            <Skeleton className="h-10 my-2" />
+            <Skeleton key={index} className="h-10 my-2" />
           ))}
       </View>
     );
   }
-
   return (
     <SectionList
       className="flex-1"
-      contentContainerClassName="pb-10"
+      contentContainerClassName="pb-10 bg-gray-100"
       sections={groupedTransactions}
       keyExtractor={(item) => item.id}
       showsVerticalScrollIndicator={false}
       renderItem={({ item }) => (
         <TransactionItem
-          className="dark:bg-gray-900 light:bg-gray-100 flex-row items-center justify-between px-2 pt-4"
+          className="flex-row items-center justify-between px-2 pt-2 pb-2 dark:bg-gray-900"
           key={item.id}
           id={item.id}
           name={item.name}
@@ -43,19 +41,10 @@ export default function ShowFullTransactions() {
           }}
         />
       )}
-      stickySectionHeadersEnabled={false}
-      renderSectionHeader={({ section: { day } }) => (
-        <View className="pt-4 mt-4 pl-2 dark:bg-gray-900 light:bg-gray-100 rounded-t-lg">
-          <Text className="dark:text-white light:text-black text-xl font-semibold lowercase">
-            {formatDate(
-              day,
-              {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              },
-              true
-            )}
+      renderSectionHeader={({ section: { formattedDay } }) => (
+        <View className="pt-4 pb-2 pl-2 dark:bg-gray-900 border-b dark:border-gray-800 bg-gray-100 border-slate-200">
+          <Text className="dark:text-white light:text-black text-xl font-semibold">
+            {formattedDay}
           </Text>
         </View>
       )}

@@ -32,31 +32,61 @@ export const calculateBalance = (data: Transaction[]) => {
       : total + transaction.amount;
   }, 0);
 };
-interface DailyTransactions {
+
+export interface DailyTransactions {
   day: string;
+  formattedDay: string;
   data: Transaction[];
 }
 
-export const groupTransactionsByDate = (
+export function groupTransactionsByDay(
   transactions: Transaction[]
-): DailyTransactions[] => {
-  const groups: { [date: string]: Transaction[] } = {};
+): DailyTransactions[] {
+  const groupedByDay = new Map<string, Transaction[]>();
 
   transactions.forEach((transaction) => {
-    const date = new Date(transaction.createdAt).toISOString().split("T")[0];
-    if (!groups[date]) {
-      groups[date] = [];
+    const date = new Date(transaction.createdAt);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const dateKey = `${year}-${month}-${day}`;
+
+    if (!groupedByDay.has(dateKey)) {
+      groupedByDay.set(dateKey, []);
     }
-    groups[date].push(transaction);
+
+    groupedByDay.get(dateKey)?.push(transaction);
   });
 
-  return Object.entries(groups)
-    .map(([day, transactions]) => ({
-      day,
-      data: transactions.sort(
-        (a, b) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      ),
-    }))
-    .sort((a, b) => a.day.localeCompare(b.day));
-};
+  return (
+    Array.from(groupedByDay.entries())
+      .map(([day, dayTransactions]) => {
+        const sortedTransactions = dayTransactions.sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+
+        const [year, month, dayNum] = day.split("-").map(Number);
+        const date = new Date(year, month - 1, dayNum);
+        const formattedDay = date.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        });
+
+        return {
+          day,
+          formattedDay,
+          data: sortedTransactions,
+        };
+      })
+      // Sort days (newest first)
+      .sort((a, b) => {
+        const [aYear, aMonth, aDay] = a.day.split("-").map(Number);
+        const [bYear, bMonth, bDay] = b.day.split("-").map(Number);
+        const dateA = new Date(aYear, aMonth - 1, aDay);
+        const dateB = new Date(bYear, bMonth - 1, bDay);
+        return dateB.getTime() - dateA.getTime();
+      })
+  );
+}

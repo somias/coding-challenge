@@ -1,6 +1,6 @@
 import { API_URLS } from "@/config/api-config";
 import { useQuery } from "@tanstack/react-query";
-import { calculateBalance, groupTransactionsByDate } from "@/utils";
+import { calculateBalance, groupTransactionsByDay } from "@/utils";
 import { useMemo } from "react";
 
 export interface Transaction {
@@ -18,10 +18,15 @@ async function fetchTransactions(): Promise<Transaction[]> {
   }
   const data = await response.json();
 
-  return data.map((item: Transaction) => ({
+  const transactions = data.map((item: Transaction) => ({
     ...item,
     amount: Number(item.amount),
   }));
+
+  return transactions.sort(
+    (a: Transaction, b: Transaction) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
 }
 
 export function useTransactions() {
@@ -37,7 +42,7 @@ export function useTransactions() {
   );
 
   const groupedTransactions = useMemo(
-    () => groupTransactionsByDate(query.data ?? []),
+    () => groupTransactionsByDay(query.data ?? []),
     [query.data]
   );
 

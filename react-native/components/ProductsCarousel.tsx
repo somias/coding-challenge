@@ -1,6 +1,7 @@
 import { FlatList, Image, View, Dimensions } from "react-native";
-import { useProducts } from "@/hooks/useProducts";
 import Skeleton from "./shared/Skeleton";
+
+import { useProducts } from "@/hooks/useProducts";
 
 const PARENT_PADDING = 16 * 2;
 const ITEM_SPACING = 8;

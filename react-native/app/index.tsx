@@ -1,11 +1,12 @@
+import { useCallback } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { RefreshControl, ScrollView, View } from "react-native";
+import ProductsCarousel from "@/components/ProductsCarousel";
 import Summary from "@/components/Summary";
 import RecentTransaction from "@/components/RecentTransactions";
-import { SafeAreaView } from "react-native-safe-area-context";
-import ProductsCarousel from "@/components/ProductsCarousel";
+
 import { useTransactions } from "@/hooks/useTransactions";
 import { useProducts } from "@/hooks/useProducts";
-import { useCallback } from "react";
 
 export default function HomeRoute() {
   const {
@@ -28,7 +29,7 @@ export default function HomeRoute() {
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
         }
-        contentContainerClassName="p-4 flex-1 gap-6 dark:bg-gray-900 text-white light:bg-gray-100 text-black"
+        contentContainerClassName="p-4 flex-1 gap-6 dark:bg-gray-900 text-white bg-gray-100 text-black"
       >
         <View className="h-80">
           <ProductsCarousel />

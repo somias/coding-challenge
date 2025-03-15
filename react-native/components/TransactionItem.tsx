@@ -1,8 +1,8 @@
-import { Transaction } from "@/hooks/useTransactions";
 import { Text, View } from "react-native";
 import Amount from "./Amount";
-import { formatDate } from "@/utils";
 
+import { Transaction } from "@/hooks/useTransactions";
+import { formatDate } from "@/utils";
 interface TransactionItemProps extends Transaction {
   className?: string;
   formatDateOptions?: Intl.DateTimeFormatOptions;
