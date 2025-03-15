@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import ConnectionStatus from "../ConnectionStatus";
+import ConnectionStatus from "./ConnectionStatus";
 
 interface ScreenWrapperProps {
   children: React.ReactNode;

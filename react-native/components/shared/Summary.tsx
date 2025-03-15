@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import Skeleton from "./shared/Skeleton";
+import Skeleton from "./Skeleton";
 
 import { useTransactions } from "@/hooks/useTransactions";
 

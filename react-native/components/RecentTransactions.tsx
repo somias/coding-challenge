@@ -1,9 +1,9 @@
 import { Link } from "expo-router";
 import { Pressable, Text, View } from "react-native";
 import Skeleton from "./shared/Skeleton";
-import TransactionItem from "./TransactionItem";
+import TransactionItem from "./shared/TransactionItem";
 import ShowFullTransactions from "./ShowFullTransactions";
-import EmptyData from "./EmptyData";
+import EmptyData from "./shared/EmptyData";
 
 import { useTransactions } from "@/hooks/useTransactions";
 

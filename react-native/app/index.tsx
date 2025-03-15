@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import ScreenWrapper from "@/components/shared/ScreenWrapper";
 import { RefreshControl, ScrollView, View } from "react-native";
 import ProductsCarousel from "@/components/ProductsCarousel";
-import Summary from "@/components/Summary";
+import Summary from "@/components/shared/Summary";
 import RecentTransaction from "@/components/RecentTransactions";
 
 import { useTransactions } from "@/hooks/useTransactions";

@@ -1,7 +1,7 @@
 import { SectionList, Text, View } from "react-native";
 import Skeleton from "./shared/Skeleton";
-import TransactionItem from "./TransactionItem";
-import EmptyData from "./EmptyData";
+import TransactionItem from "./shared/TransactionItem";
+import EmptyData from "./shared/EmptyData";
 
 import { useTransactions } from "@/hooks/useTransactions";
 

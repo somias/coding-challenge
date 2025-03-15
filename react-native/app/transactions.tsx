@@ -1,7 +1,7 @@
 import React from "react";
 import ScreenWrapper from "@/components/shared/ScreenWrapper";
 import { View } from "react-native";
-import Summary from "@/components/Summary";
+import Summary from "@/components/shared/Summary";
 import RecentTransactions from "@/components/RecentTransactions";
 
 export default function TransactionsScreen() {
