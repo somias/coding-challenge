@@ -31,7 +31,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       networkMode: "offlineFirst",
-      gcTime: 1000 * 30, // 30 seconds
+      gcTime: 1000 * 60 * 60 * 24, // 24 hours
     },
   },
 });
