@@ -1,37 +1,50 @@
-# React Native App Dashboard Challenge
+# Welcome to your Expo app 👋
 
-## Overview
-Create a React Native application that gives users a comprehensive dashboard by displaying their dynamically calculated account balance and a list of recent transactions.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Requirements
+## Get started
 
-### User Stories
-- **Account Balance:** Users can view their calculated account balance.
-- **Recent Transactions:** The dashboard shows the five most recent transactions.
-- **Full Transaction History:** Users can tap the "See all" button to view their complete transaction list.
+1. Install dependencies
 
-### API Endpoints
-Fetch data from the following endpoints:
-- **Products:** [https://628b46b07886bbbb37b46173.mockapi.io/api/v1/products](https://628b46b07886bbbb37b46173.mockapi.io/api/v1/products)
-- **Transactions:** [https://628b46b07886bbbb37b46173.mockapi.io/api/v1/transactions](https://628b46b07886bbbb37b46173.mockapi.io/api/v1/transactions)
+   ```bash
+   npm install
+   ```
 
-### Wireframes
-Refer to the provided wireframes for guidance on layout and design:
+2. Start the app
 
-| Dashboard | Transactions |
-| --------- | :----------: |
-| ![Dashboard](dashboard.png) | ![Transactions](transactions.png) |
+   ```bash
+    npx expo start
+   ```
 
-## Nice-to-Have Features
-- **Pull to Refresh:** Allow users to update the dashboard by pulling down on the list.
-- **Offline Support:** Cache data locally for offline viewing.
-- **Skeleton Loading Screens:** Display placeholders or spinners while data is loading.
-- **Modal View for Transactions:** When a user taps on a transaction, display a modal with detailed information about that transaction.
+In the output, you'll find options to open the app in a
 
-## Challenge Instructions
-- **Fork the repository.**
-- **Build a clean, well-structured, and performant solution.**
-- **Commit your work frequently.**
-- **Submit your solution via a pull request.**
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-Happy coding!
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+## Get a fresh project
+
+When you're ready, run:
+
+```bash
+npm run reset-project
+```
+
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
