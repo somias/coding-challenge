@@ -11,7 +11,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.somias.rand-challenge",
-      "appleTeamId": "9V2Q5VWT8B"
+      "appleTeamId": "9V2Q5VWT8B",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -38,6 +41,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "2b288b52-d73a-4a83-b63d-83a4eae45696"
+      }
     }
   }
 }

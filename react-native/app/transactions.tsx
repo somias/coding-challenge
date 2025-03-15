@@ -8,7 +8,6 @@ const TransactionSummary = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      console.log("Fetching...");
       const response = await fetch(
         "https://628b46b07886bbbb37b46173.mockapi.io/api/v1/products"
       );
@@ -61,7 +60,7 @@ const TransactionSummary = () => {
               darkMode ? "text-white" : "text-gray-800"
             }`}
           >
-            Summary
+            Summary: {JSON.stringify(data ?? "none")}
           </Text>
         </View>
 
