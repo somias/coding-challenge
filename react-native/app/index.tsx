@@ -12,7 +12,7 @@ export default function HomeRoute() {
         refreshControl={
           <RefreshControl refreshing={false} onRefresh={() => {}} />
         }
-        contentContainerClassName="p-5 flex-1 gap-12 dark:bg-gray-900 text-white light:bg-gray-100 text-black"
+        contentContainerClassName="p-4 flex-1 gap-12 dark:bg-gray-900 text-white light:bg-gray-100 text-black"
       >
         <Skeleton className="h-64" />
 
