@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Skeleton from "./shared/Skeleton";
 import TransactionItem from "./TransactionItem";
 import ShowFullTransactions from "./ShowFullTransactions";
@@ -29,11 +29,10 @@ export default function RecentTransactions({
           Recent transactions
         </Text>
         {!showFull && newestThreeTransactions.length ? (
-          <Link
-            href="/transactions"
-            className="text-blue-500 items-center text-sm"
-          >
-            See all
+          <Link href="/transactions" asChild>
+            <Pressable hitSlop={20}>
+              <Text className="text-blue-500 items-center">See all</Text>
+            </Pressable>
           </Link>
         ) : null}
       </View>
