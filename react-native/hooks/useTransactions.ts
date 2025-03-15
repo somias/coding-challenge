@@ -28,6 +28,7 @@ export function useTransactions() {
   const query = useQuery({
     queryKey: ["transactions"],
     queryFn: fetchTransactions,
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   const balance = useMemo(
