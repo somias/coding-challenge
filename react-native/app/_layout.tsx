@@ -12,7 +12,6 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import "react-native-reanimated";
 
 import "../global.css";
@@ -59,23 +58,23 @@ export default function RootLayout() {
       client={queryClient}
     >
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        {/* <SafeAreaView className="flex-1"> */}
-        <Stack
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="index" />
+        <Stack>
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Screen
             name="transactions"
             options={{
               presentation: "modal",
+              headerTitle: "Transactions",
             }}
           />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
-        {/* </SafeAreaView> */}
       </ThemeProvider>
     </PersistQueryClientProvider>
   );

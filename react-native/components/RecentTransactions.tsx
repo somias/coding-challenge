@@ -3,7 +3,13 @@ import { Text, View, ActivityIndicator } from "react-native";
 import { useTransactions } from "@/hooks/useTransactions";
 import { formatDate } from "@/utils";
 
-export default function RecentTransactions() {
+interface RecentTransactions {
+  showFull?: boolean;
+}
+
+export default function RecentTransactions({
+  showFull = false,
+}: RecentTransactions) {
   const { data, isLoading } = useTransactions();
 
   const recentTransactions = data ? data.slice(0, 3) : [];
@@ -14,12 +20,15 @@ export default function RecentTransactions() {
         <Text className="text-lg font-medium dark:text-gray-200 light:text-gray-800">
           Recent transactions
         </Text>
-        <Link
-          href="/transactions"
-          className="text-blue-500 items-center text-sm"
-        >
-          See all
-        </Link>
+
+        {!showFull ? (
+          <Link
+            href="/transactions"
+            className="text-blue-500 items-center text-sm"
+          >
+            See all
+          </Link>
+        ) : null}
       </View>
 
       {isLoading ? (
