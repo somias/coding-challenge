@@ -60,7 +60,8 @@ const TransactionSummary = () => {
               darkMode ? "text-white" : "text-gray-800"
             }`}
           >
-            Summary: {JSON.stringify(data ?? "none")}
+            {/* Summary: {JSON.stringify(data ?? "none")} */}
+            Summary
           </Text>
         </View>
 
