@@ -1,11 +1,12 @@
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
-import { useTransactions } from "@/hooks/useTransactions";
-import { formatDate } from "@/utils";
-import Skeleton from "./shared/Skeleton";
-import ShowFullTransactions from "./ShowFullTransactions";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Amount from "./Amount";
+
+import Skeleton from "./shared/Skeleton";
+import TransactionItem from "./TransactionItem";
+import ShowFullTransactions from "./ShowFullTransactions";
+
+import { useTransactions } from "@/hooks/useTransactions";
 
 interface RecentTransactionsProps {
   showFull?: boolean;
@@ -43,23 +44,15 @@ export default function RecentTransactions({
         {!showFull ? (
           <View className="space-y-3">
             {recentTransactions.map((transaction) => (
-              <View
-                key={transaction.id}
+              <TransactionItem
                 className="flex-row justify-between items-center p-2 rounded-md"
-              >
-                <View>
-                  <Text className="font-medium dark:text-gray-300 light:text-gray-700">
-                    {transaction.name}
-                  </Text>
-                  <Text className="text-xs text-gray-500">
-                    {formatDate(transaction.createdAt)}
-                  </Text>
-                </View>
-                <Amount
-                  isExpense={transaction.isExpense}
-                  amount={transaction.amount}
-                />
-              </View>
+                key={transaction.id}
+                id={transaction.id}
+                name={transaction.name}
+                createdAt={transaction.createdAt}
+                isExpense={transaction.isExpense}
+                amount={transaction.amount}
+              />
             ))}
           </View>
         ) : (

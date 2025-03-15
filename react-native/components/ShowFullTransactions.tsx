@@ -1,7 +1,7 @@
-import { useTransactions } from "@/hooks/useTransactions";
 import { SectionList, Text, View } from "react-native";
+import TransactionItem from "./TransactionItem";
+import { useTransactions } from "@/hooks/useTransactions";
 import { formatDate, groupTransactionsByDate } from "@/utils";
-import Amount from "./Amount";
 
 export default function ShowFullTransactions() {
   const { data } = useTransactions();
@@ -17,21 +17,20 @@ export default function ShowFullTransactions() {
       keyExtractor={(item) => item.id}
       showsVerticalScrollIndicator={false}
       renderItem={({ item }) => (
-        <View className="dark:bg-gray-900 light:bg-gray-100 flex-row items-center justify-between px-2 pt-4">
-          <View className="">
-            <Text className="dark:text-white light:text-black">
-              {item.name}
-            </Text>
-            <Text className="dark:text-white light:text-black text-xs">
-              {formatDate(item.createdAt, {
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: false,
-              })}
-            </Text>
-          </View>
-          <Amount isExpense={item.isExpense} amount={item.amount} />
-        </View>
+        <TransactionItem
+          className="dark:bg-gray-900 light:bg-gray-100 flex-row items-center justify-between px-2 pt-4"
+          key={item.id}
+          id={item.id}
+          name={item.name}
+          createdAt={item.createdAt}
+          isExpense={item.isExpense}
+          amount={item.amount}
+          formatDateOptions={{
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          }}
+        />
       )}
       stickySectionHeadersEnabled={false}
       renderSectionHeader={({ section: { date } }) => (
