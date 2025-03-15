@@ -9,7 +9,9 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.somias.rand-challenge",
+      "appleTeamId": "9V2Q5VWT8B"
     },
     "android": {
       "adaptiveIcon": {

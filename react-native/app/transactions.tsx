@@ -1,8 +1,24 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { View, Text, Pressable } from "react-native";
 
 const TransactionSummary = () => {
   const [darkMode, setDarkMode] = useState(false);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      console.log("Fetching...");
+      const response = await fetch(
+        "https://628b46b07886bbbb37b46173.mockapi.io/api/v1/products"
+      );
+      if (!response.ok) throw new Error("Error while fetching");
+      const json = await response.json();
+      return json;
+    },
+  });
+
+  console.log({ data, isLoading });
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
